@@ -1,9 +1,10 @@
 import { useState } from "react";
-//import FormSearch from "../components/FormSearch/FormSearch";
 import "../styles/index.scss";
-import "../components/FormSearch/FormSearch.scss";
+import "../styles/FormSearch.scss";
 import Card from "../components/Card/Card";
 import DetailCard from "../components/DetailCard/DetailCard";
+
+// Hacer refactor en esta pagina, agregar spinner, agregar selector
 
 function Home() {
   const API_KEY = process.env.REACT_APP_API_KEY;
