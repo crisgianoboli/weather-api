@@ -1,0 +1,44 @@
+.detail-container {
+  width: 90%;
+  padding-left: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .detail-degrees-content {
+    width: 50%;
+
+    .detail-degrees {
+      font-size: 32px;
+      color: #9d174d;
+      font-weight: 900;
+    }
+
+    .detail-icon-content {
+      display: flex;
+      align-items: center;
+
+      .detail-degrees-icon {
+        width: 50%;
+      }
+    }
+
+    .detail-deg {
+      color: #9ca3af;
+      font-style: initial;
+      text-transform: capitalize;
+    }
+  }
+
+  @media (min-width: 700px) {
+    width: 60%;
+
+    .detail-degrees-content {
+      .detail-deg {
+        font-size: x-large;
+      }
+    }
+  }
+}
