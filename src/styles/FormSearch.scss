@@ -42,6 +42,7 @@
       .search-form {
         display: flex;
         align-items: center;
+        flex-direction: column;
 
         .input-search {
           width: 180px;
@@ -59,7 +60,7 @@
           background-color: rgba(0, 0, 0, 0.8);
           color: white;
           padding: 0 10px;
-          margin: 0 5px;
+          margin: 10px 0;
 
           &:hover {
             cursor: pointer;

@@ -3,8 +3,7 @@ import "../styles/index.scss";
 import "../styles/FormSearch.scss";
 import Card from "../components/Card/Card";
 import DetailCard from "../components/DetailCard/DetailCard";
-
-// Hacer refactor en esta pagina, agregar spinner, agregar selector
+import SelectCities from "../components/SelectCities/SelectCities";
 
 function Home() {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -25,6 +24,11 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     getWeather(searchTerm);
+  };
+
+  const handleCitySelected = (e) => {
+    let citySelected = e.target.value;
+    getWeather(citySelected);
   };
 
   const getWeather = async (location) => {
@@ -53,16 +57,13 @@ function Home() {
         }@4x.png`
       );
     } catch (error) {
-      console.log("Error encountered: ", error);
+      console.error("Error encountered: ", error);
     }
   };
 
   const myIP = (location) => {
     const { latitude, longitude } = location.coords;
     getWeather([latitude, longitude]);
-  };
-  const error = (err) => {
-    console.log("ERROR(" + err.code + "): " + err.message);
   };
 
   return (
@@ -100,11 +101,12 @@ function Home() {
                   <button
                     className="search-icon"
                     onClick={() => {
-                      navigator.geolocation.getCurrentPosition(myIP, error);
+                      navigator.geolocation.getCurrentPosition(myIP);
                     }}
                   >
                     <i className="fa fa-map-marker-alt" aria-hidden="true"></i>
                   </button>
+                  <SelectCities handleCitySelected={handleCitySelected} />
                 </form>
               </div>
             </div>

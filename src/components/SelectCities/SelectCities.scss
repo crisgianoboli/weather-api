@@ -1,0 +1,16 @@
+.select-icon {
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0 10px;
+  /* margin: 0 5px; */
+  margin: 10px 0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
