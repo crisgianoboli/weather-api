@@ -11,7 +11,7 @@ function Home() {
   const [noData, setNoData] = useState("No Data Yet");
   const [searchTerm, setSearchTerm] = useState("");
   const [weatherData, setWeatherData] = useState([]);
-  const [city, setCity] = useState("Unknown location");
+  const [city, setCity] = useState("Ubicación desconocida");
   const [weatherIcon, setWeatherIcon] = useState(
     `${process.env.REACT_APP_ICON_URL}10n@2x.png`
   );
@@ -47,6 +47,7 @@ function Home() {
       let data = await res.json();
       if (data.cod != 200) {
         setNoData("Location Not Found");
+        setCity("Ubicación desconocida");
         return;
       }
       setWeatherData(data);
@@ -126,7 +127,7 @@ function Home() {
               </div>
               <DetailCard weather_icon={weatherIcon} data={weatherData} />
               <div className="extended-container">
-                <h4> Clima Extendido</h4>
+                <h4>Clima Extendido</h4>
                 <div className="extended-container-card">
                   {weatherData.list.map((days, index) => {
                     if (index > 0) {

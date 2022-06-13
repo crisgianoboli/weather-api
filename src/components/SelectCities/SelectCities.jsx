@@ -4,11 +4,11 @@ function SelectCities({ handleCitySelected }) {
   const cities = [
     {
       id: 1,
-      title: "Cordoba",
+      title: "Miami",
     },
     {
       id: 2,
-      title: "Mendoza",
+      title: "Tokio",
     },
     {
       id: 3,
@@ -25,13 +25,18 @@ function SelectCities({ handleCitySelected }) {
   ];
 
   return (
-    <select onChange={handleCitySelected} className="select-icon">
-      {cities.map((city) => (
-        <option key={city.id} value={city.title} className="select-icon">
-          {city.title}
-        </option>
-      ))}
-    </select>
+    <>
+      <label htmlFor="cities" className="label">
+        Seleccione una Ubicación
+      </label>
+      <select onChange={handleCitySelected} className="select-icon" id="cities">
+        {cities.map((city) => (
+          <option key={city.id} value={city.title} className="select-icon">
+            {city.title}
+          </option>
+        ))}
+      </select>
+    </>
   );
 }
 
