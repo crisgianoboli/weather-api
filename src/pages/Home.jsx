@@ -45,18 +45,19 @@ function Home() {
         }&appid=${API_KEY}&units=metric&cnt=5&lang=es`
       );
       let data = await res.json();
-      if (data.cod != 200) {
+      if (data.cod === "200") {
+        setWeatherData(data);
+        setCity(`${data.city.name}, ${data.city.country}`);
+        setWeatherIcon(
+          `${
+            process.env.REACT_APP_ICON_URL + data.list[0].weather[0]["icon"]
+          }@4x.png`
+        );
+      } else {
         setNoData("Location Not Found");
         setCity("Ubicación desconocida");
         return;
       }
-      setWeatherData(data);
-      setCity(`${data.city.name}, ${data.city.country}`);
-      setWeatherIcon(
-        `${
-          process.env.REACT_APP_ICON_URL + data.list[0].weather[0]["icon"]
-        }@4x.png`
-      );
     } catch (error) {
       console.error("Error encountered: ", error);
     }
