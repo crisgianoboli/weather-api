@@ -131,9 +131,7 @@ function Home() {
                 <h4>Clima Extendido</h4>
                 <div className="extended-container-card">
                   {weatherData.list.map((days, index) => {
-                    if (index > 0) {
-                      return <Card key={index} day={days} />;
-                    }
+                    return <Card key={index} day={days} />;
                   })}
                 </div>
               </div>
