@@ -47,6 +47,8 @@ const formatForecastWeather = ({ daily, timezone }) => {
   daily = daily.slice(1, 6).map((d) => ({
     title: formatToLocalTime(d.dt, timezone, "ccc"),
     temp: d.temp.day,
+    temp_max: d.temp.max,
+    temp_min: d.temp.min,
     icon: d.weather[0].icon,
   }));
   return { timezone, daily };

@@ -16,6 +16,10 @@
       padding-right: 5px;
       padding-left: 25px;
     }
+
+    @media (min-width: 768px) {
+      padding-bottom: 50px;
+    }
   }
 
   .form_container {
@@ -70,7 +74,7 @@
     }
   }
 
-  @media (min-width: 700px) {
+  /*  @media (min-width: 700px) {
     .searc_title_content {
       padding-top: 30px;
       h1 {
@@ -104,5 +108,5 @@
         }
       }
     }
-  }
+  } */
 }

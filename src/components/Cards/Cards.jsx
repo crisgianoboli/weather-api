@@ -8,15 +8,21 @@ function Cards({ items }) {
     <>
       {items.map((item, index) => (
         <Card key={index} border="light" className="card-weather-content">
-          <p>{item.title}</p>
+          <p className="weather-day">{item.title}</p>
+          <Card.Text className="card-text">
+            Temp Actual: {`${item.temp.toFixed()}`}&deg;
+          </Card.Text>
+          <Card.Text className="card-text">
+            Min Temp: {`${item.temp_min.toFixed()}`}&deg;
+          </Card.Text>
+          <Card.Text className="card-text">
+            Max Temp:{`${item.temp_max.toFixed()}`}&deg;
+          </Card.Text>
           <Card.Img
             src={iconUrlFromCode(item.icon)}
-            className=""
+            className="icon-weather"
             alt="icon-weather"
           />
-          <Card.Text className="card-text">
-            {`${item.temp.toFixed()}`}&deg;
-          </Card.Text>
         </Card>
       ))}
     </>
