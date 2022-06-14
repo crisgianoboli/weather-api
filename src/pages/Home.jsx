@@ -13,7 +13,7 @@ import FormSearch from "../components/Form/FormSearch";
 
 function Home() {
   const [query, setQuery] = useState({ q: "Cordoba" });
-  const [units, setUnits] = useState("metric");
+  const [units] = useState("metric");
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
