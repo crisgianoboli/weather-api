@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,15 +20,15 @@ function Home() {
     getFormattedWeatherData({ ...query, units }).then((data) => {
       setWeather(data);
     });
-
-    //cada vez que cambiemos de location pediremos nueva data
   }, [query, units]);
 
-  //usecallback
-  const handleCitySelected = (e) => {
-    const citySelected = e.target.value;
-    setQuery({ q: citySelected });
-  };
+  const handleCitySelected = useCallback(
+    (e) => {
+      const citySelected = e.target.value;
+      setQuery({ q: citySelected });
+    },
+    [setQuery]
+  );
 
   return (
     <div className="home-container">
