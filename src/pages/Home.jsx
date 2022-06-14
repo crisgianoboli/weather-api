@@ -12,63 +12,24 @@ import getFormattedWeatherData from "../Services/WeatherService";
 import FormSearch from "../components/Form/FormSearch";
 
 function Home() {
-  /* const [noData, setNoData] = useState("No hay busqueda realizada");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [weatherData, setWeatherData] = useState([]);
-  const [city, setCity] = useState("Ubicación desconocida");
-  const [weatherIcon, setWeatherIcon] = useState(
-    `${process.env.REACT_APP_ICON_URL}10n@2x.png`
-  ); */
   const [query, setQuery] = useState({ q: "Mendoza" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
-    const fetchWeather = async () => {
-      await getFormattedWeatherData({ ...query, units }).then((data) => {
-        setWeather(data);
-      });
-    };
-    return fetchWeather;
+    getFormattedWeatherData({ ...query, units }).then((data) => {
+      setWeather(data);
+    });
+
+    console.log(query);
     //cada vez que cambiemos de location pediremos nueva data
   }, [query, units]);
 
+  //usecallback
   const handleCitySelected = (e) => {
-    let citySelected = e.target.value;
-    console.log(citySelected);
+    const citySelected = e.target.value;
+    setQuery({ q: citySelected });
   };
-
-  /* const getWeather = async (location) => {
-    setWeatherData([]);
-    let how_to_search =
-      typeof location === "string"
-        ? `q=${location}`
-        : `lat=${location[0]}&lon=${location[1]}`;
-    setNoData(<Spinner animation="border" size="xl" />);
-    try {
-      let res = await fetch(
-        `${
-          process.env.REACT_APP_URL + how_to_search
-        }&appid=${API_KEY}&units=metric&cnt=5&lang=es`
-      );
-      let data = await res.json();
-      if (data.cod === "200") {
-        setWeatherData(data);
-        setCity(`${data.city.name}, ${data.city.country}`);
-        setWeatherIcon(
-          `${
-            process.env.REACT_APP_ICON_URL + data.list[0].weather[0]["icon"]
-          }@4x.png`
-        );
-      } else {
-        setNoData("Location Not Found");
-        setCity("Ubicación desconocida");
-        return;
-      }
-    } catch (error) {
-      console.error("Error encountered: ", error);
-    }
-  }; */
 
   return (
     <div className="home-container">
@@ -81,7 +42,7 @@ function Home() {
             <div className="form_container">
               <div className="form_content">
                 <FormSearch setQuery={setQuery} />
-                <SelectCities handleCitySelected={handleCitySelected} />
+                <SelectCities onCitySelected={handleCitySelected} />
               </div>
             </div>
           </div>
