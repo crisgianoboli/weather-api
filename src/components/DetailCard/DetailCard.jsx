@@ -1,34 +1,40 @@
-import React from "react";
+import { iconUrlFromCode } from "../../Services/WeatherService";
+
 import "./DetailCard.scss";
 
-function DetailCard({ weather_icon, data }) {
-  const { clouds, main, weather } = data.list[0];
+function DetailCard({
+  weather: {
+    description,
+    details,
+    feels_like,
+    icon,
+    humidity,
+    name,
+    temp,
+    temp_min,
+    temp_max,
+  },
+}) {
   return (
     <div className="detail-container">
+      {name}
       <div className="detail-degrees-content">
-        <p className="detail-degrees">{Math.round(main.temp)}&deg;C</p>
+        <p className="detail-degrees">{`${temp.toFixed()}`}&deg;C</p>
         <div className="detail-icon-content">
-          {weather[0].main}
+          {description}
           <img
-            src={weather_icon}
+            src={iconUrlFromCode(icon)}
             alt="weather"
             className="detail-degrees-icon"
           />
         </div>
-        <p className="detail-deg">{weather[0].description}</p>
+        <p className="detail-deg">{details}</p>
       </div>
       <div className="detail-degrees-content">
-        <p className="detail-deg">
-          RealFeel: {Math.round(main.feels_like)}&deg;C
-        </p>
-        <p className="detail-deg">Humidity: {main.humidity}%</p>
-        <p className="detail-deg">Cloud Cover: {clouds.all}%</p>
-        <p className="detail-deg">
-          Min Temp: {Math.round(main.temp_min)}&deg;C
-        </p>
-        <p className="detail-deg">
-          Max Temp: {Math.round(main.temp_max)}&deg;C
-        </p>
+        <p className="detail-deg">RealFeel: {Math.round(feels_like)}&deg;C</p>
+        <p className="detail-deg">Humidity: {humidity}%</p>
+        <p className="detail-deg">Min Temp: {Math.round(temp_min)}&deg;C</p>
+        <p className="detail-deg">Max Temp: {Math.round(temp_max)}&deg;C</p>
       </div>
     </div>
   );

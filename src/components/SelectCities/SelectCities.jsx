@@ -25,9 +25,9 @@ function SelectCities({ handleCitySelected }) {
   ];
 
   return (
-    <>
+    <div className="select-container">
       <label htmlFor="cities" className="label">
-        Seleccione una Ubicación
+        Seleccione una Localidad
       </label>
       <select onChange={handleCitySelected} className="select-icon" id="cities">
         {cities.map((city) => (
@@ -36,7 +36,7 @@ function SelectCities({ handleCitySelected }) {
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 }
 

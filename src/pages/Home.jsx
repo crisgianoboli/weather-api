@@ -1,43 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import "../styles/index.scss";
 import "../styles/FormSearch.scss";
-import Card from "../components/Card/Card";
+
 import DetailCard from "../components/DetailCard/DetailCard";
 import SelectCities from "../components/SelectCities/SelectCities";
+import Cards from "../components/Cards/Cards";
+import getFormattedWeatherData from "../Services/WeatherService";
+import FormSearch from "../components/Form/FormSearch";
 
 function Home() {
-  const API_KEY = process.env.REACT_APP_API_KEY;
-
-  const [noData, setNoData] = useState("No Data Yet");
+  /* const [noData, setNoData] = useState("No hay busqueda realizada");
   const [searchTerm, setSearchTerm] = useState("");
   const [weatherData, setWeatherData] = useState([]);
   const [city, setCity] = useState("Ubicación desconocida");
   const [weatherIcon, setWeatherIcon] = useState(
     `${process.env.REACT_APP_ICON_URL}10n@2x.png`
-  );
+  ); */
+  const [query, setQuery] = useState({ q: "Mendoza" });
+  const [units, setUnits] = useState("metric");
+  const [weather, setWeather] = useState(null);
 
-  const handleChange = (input) => {
-    const { value } = input.target;
-    setSearchTerm(value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getWeather(searchTerm);
-  };
+  useEffect(() => {
+    const fetchWeather = async () => {
+      await getFormattedWeatherData({ ...query, units }).then((data) => {
+        setWeather(data);
+      });
+    };
+    return fetchWeather;
+    //cada vez que cambiemos de location pediremos nueva data
+  }, [query, units]);
 
   const handleCitySelected = (e) => {
     let citySelected = e.target.value;
-    getWeather(citySelected);
+    console.log(citySelected);
   };
 
-  const getWeather = async (location) => {
+  /* const getWeather = async (location) => {
     setWeatherData([]);
     let how_to_search =
       typeof location === "string"
         ? `q=${location}`
         : `lat=${location[0]}&lon=${location[1]}`;
-
+    setNoData(<Spinner animation="border" size="xl" />);
     try {
       let res = await fetch(
         `${
@@ -61,12 +68,7 @@ function Home() {
     } catch (error) {
       console.error("Error encountered: ", error);
     }
-  };
-
-  const myIP = (location) => {
-    const { latitude, longitude } = location.coords;
-    getWeather([latitude, longitude]);
-  };
+  }; */
 
   return (
     <div className="home-container">
@@ -75,64 +77,30 @@ function Home() {
           <div className="card_search_container">
             <div className="searc_title_content">
               <h1>WeatherApi</h1>
-
-              <p> {city} </p>
             </div>
             <div className="form_container">
               <div className="form_content">
-                <h4>El mejor buscador de clima esta aquí</h4>
-                <form
-                  noValidate
-                  onSubmit={handleSubmit}
-                  className="search-form"
-                >
-                  <input
-                    type="text"
-                    placeholder="Enter location"
-                    className="input-search"
-                    onChange={handleChange}
-                    required
-                  />
-                  <button type="submit" className="search-icon">
-                    <i
-                      className="fa fa-search"
-                      aria-hidden="true"
-                      type="submit"
-                    ></i>
-                  </button>
-                  <button
-                    className="search-icon"
-                    onClick={() => {
-                      navigator.geolocation.getCurrentPosition(myIP);
-                    }}
-                  >
-                    <i className="fa fa-map-marker-alt" aria-hidden="true"></i>
-                  </button>
-                  <SelectCities handleCitySelected={handleCitySelected} />
-                </form>
+                <FormSearch setQuery={setQuery} />
+                <SelectCities handleCitySelected={handleCitySelected} />
               </div>
             </div>
           </div>
         </div>
 
         <div className="right-content">
-          {weatherData.length === 0 ? (
-            <div>
-              <h1>{noData}</h1>
-            </div>
+          {weather === null ? (
+            <Spinner animation="border" />
           ) : (
             <>
               <div className="extended-container-text">
                 <h4> Hoy en </h4>
-                <span> {city}</span>
+                <span> {weather.name}</span>
               </div>
-              <DetailCard weather_icon={weatherIcon} data={weatherData} />
+              <DetailCard weather={weather} />
               <div className="extended-container">
-                <h4>Clima Extendido</h4>
+                <h4>Pronóstico Extendido</h4>
                 <div className="extended-container-card">
-                  {weatherData.list.map((days, index) => {
-                    return <Card key={index} day={days} />;
-                  })}
+                  <Cards items={weather.daily} />
                 </div>
               </div>
             </>
