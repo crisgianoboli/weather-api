@@ -21,7 +21,6 @@ function Home() {
       setWeather(data);
     });
 
-    console.log(query);
     //cada vez que cambiemos de location pediremos nueva data
   }, [query, units]);
 
