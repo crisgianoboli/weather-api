@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 Swal.fire({
   icon: "info",
   title: "Preste atención",
-  text: "Recuerde habilitar la ubicacion de su dispositivo",
+  text: "Recuerde habilitar/aceptar la ubicacion de su dispositivo",
 });
 root.render(
   <React.StrictMode>

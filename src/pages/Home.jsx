@@ -3,7 +3,7 @@ import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "../styles/index.scss";
-import "../styles/FormSearch.scss";
+import "../components/Form/FormSearch.scss";
 
 import DetailCard from "../components/DetailCard/DetailCard";
 import SelectCities from "../components/SelectCities/SelectCities";
@@ -12,7 +12,7 @@ import getFormattedWeatherData from "../Services/WeatherService";
 import FormSearch from "../components/Form/FormSearch";
 
 function Home() {
-  const [query, setQuery] = useState({ q: "Mendoza" });
+  const [query, setQuery] = useState({ q: "Cordoba" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
