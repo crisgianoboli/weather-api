@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import "../styles/index.scss";
 import "../components/Form/FormSearch.scss";
@@ -58,7 +57,6 @@ function Home() {
               </div>
               <DetailCard weather={weather} />
               <div className="extended-container">
-                <h4>Pronóstico Extendido</h4>
                 <div className="extended-container-card">
                   <Cards items={weather.daily} />
                 </div>

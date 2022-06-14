@@ -8,7 +8,7 @@ function Cards({ items }) {
     <>
       {items.map((item, index) => (
         <Card key={index} border="light" className="card-weather-content">
-          <p className="weather-day">{item.title}</p>
+          <h3 className="weather-day">{item.title}</h3>
           <Card.Text className="card-text">
             Temp Actual: {`${item.temp.toFixed()}`}&deg;
           </Card.Text>
