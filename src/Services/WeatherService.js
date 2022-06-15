@@ -7,7 +7,15 @@ const getWeatherData = async (infoType, searchParams) => {
   const url = new URL(BASE_URL + "/" + infoType);
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
-  return await fetch(url).then((response) => response.json());
+  return await fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      // eslint-disable-next-line no-cond-assign
+      if (data.cod !== 200) {
+        console.log("no data");
+      }
+      return data;
+    });
 };
 
 const formatCurrentWeather = (data) => {

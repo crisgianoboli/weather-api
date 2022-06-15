@@ -10,6 +10,8 @@ Para el desarrollo de este proyecto se utilizo:
 
 ### Fetch para peticiones
 
+### Luxon manejo de dia, horas, y armado de fecha
+
 ### Bootstrap para el armado de cards y spinner
 
 ### Sweetalert2 para dar aviso de alerta
@@ -23,4 +25,4 @@ para obtener el clima de donde este la persona. Y a su vez se desarrollo un sele
 
 # Oportunidad de mejora:
 
-Al finalizar el proyecto se observo que se puede realizar mejoras en el mismo, una de ellas es el agregando de un Hook (high orden component) para el maneno de peticiones, el mismo no fue realizado por motivos de tiempo y tambien por el tamano de proyecto; el mismo como se encuentra es funcional. A su vez se deja una rama Develop para continuar con la mejora del proyecto en un futuro.
+Al finalizar el proyecto se observo que se puede realizar mejoras en el mismo, una de ellas es el agregando de un Hook (high orden component) para el manejo de peticiones y de errores en la respuesta de la Api, no fue realizado por motivos de tiempo y tambien por el tamano de proyecto; el mismo al momento se encuentra funcional. A su vez se deja una rama Develop para continuar con la mejora del proyecto en un futuro.
